@@ -1,10 +1,13 @@
+/*
+SimpleReceive
+This sketch displays text strings received using VirtualWire
+Connect the Receiver data pin to Arduino pin 11
+*/
 #include <VirtualWire.h>
-
 byte message[VW_MAX_MESSAGE_LEN]; // a buffer to store the incoming messages
 byte messageLength = VW_MAX_MESSAGE_LEN; // the size of the message
 void setup()
 {
-  pinMode(13,OUTPUT);
 Serial.begin(9600);
 Serial.println("Device is ready");
 // Initialize the IO and ISR
@@ -16,15 +19,10 @@ void loop()
 if (vw_get_message(message, &messageLength)) // Non-blocking
 {
 Serial.print("Received: ");
-
-Serial.write(message[0]);
-if (message[0]=='a')
-  {
-    digitalWrite(13,HIGH);
-    delay(2000);
-    digitalWrite(13,LOW);
-    delay(3000);
-    }
-
+for (int i = 0; i < messageLength; i++)
+{
+Serial.write(message[i]);
+}
+Serial.println();
 }
 }
