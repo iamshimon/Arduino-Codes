@@ -1,3 +1,8 @@
+/*
+SimpleSend
+This sketch transmits a short text message using the VirtualWire library
+connect the Transmitter data pin to Arduino pin 12
+*/
 #include <VirtualWire.h>
 void setup()
 {
@@ -6,7 +11,7 @@ vw_setup(2000); // Bits per sec
 }
 void loop()
 {
-send("a");
+send("Hello there");
 delay(1000);
 }
 void send (char *message)
